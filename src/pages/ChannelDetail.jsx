@@ -37,7 +37,6 @@ console.log(channelDetail?.brandingSettings?.image?.bannerExternalUrl)
         <Box sx={{ mr: {sm:'100px'}}} />
         <Videos videos={videos} />
       </Box>
-
     </Box>
   )
 }
