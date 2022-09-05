@@ -4,7 +4,8 @@ import { CheckCircle } from '@mui/icons-material'
 import { FetchFromApi } from '../utils/FetchFromApi'
 import { Link, useParams } from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import { Videos } from '../components'
+import { Videos,Loading } from '../components'
+
 
 
 const VideoDetail = () => {
@@ -20,10 +21,7 @@ const VideoDetail = () => {
       .then((data) => setVideos(data.items))
   }, [id])
 
-  if (!videoDetail?.snippet) return 'Loading...';
-
-  if (!videos) return 'Loading...';
-
+  if (!videoDetail?.snippet || !videos) return <Loading />
 
   //destructure
   const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
@@ -41,7 +39,7 @@ const VideoDetail = () => {
               <Link to={`/channel/${channelId}`}>
                 <Typography variant={{ sm: 'subtitle1', md: 'h6' }} color="#fff">
                   {channelTitle}
-                  <CheckCircle sx={{ fontSize: '12px', color: 'gray', ml: '5px',mt:'5px' }} />
+                  <CheckCircle sx={{ fontSize: '12px', color: 'gray', ml: '5px', mt: '5px' }} />
                 </Typography>
               </Link>
               <Stack direction="row" gap="20px" alignItems="center">
